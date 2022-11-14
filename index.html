@@ -1,32 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width initial-scale=1.0">
-	<title>Carosello Mono Array upgrade</title>
-	<link rel="stylesheet" href="css/style.css">
-	<script src="js/script.js" defer></script>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Carosello con vue</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Slider</title>
 </head>
 <body>
-	<div class="container-blur">
-		<div class="contents">
-			<div class="slider">
-				<div class="slider-viewer">
-					<div class="controls">
-						<button class="btn-left">&lt;</button>
-						<button class="btn-right">&gt;</button>
-					</div>
-				</div>
 
-				<div class="thumbs"></div>
-			</div>
+    <div id="app">
 
-			<div class="btns">
-				<button class="btn-start-stop" data-functionality="stop">Stop</button>
-				<button class="btn-invert">Invert</button>
-			</div>
-		</div>
-	</div>
+        <div class="container" >
+            <div class="slider-wrapper" tabindex="0" @mouseover="carouselStop" @mouseleave="carouselStart">
+                <div class="item">
+                    <img :src="this.slides[this.actualElement].image" alt="Svezia" />
+                    <div class="text">
+                        <h3>{{ this.slides[this.actualElement].title }}</h3>
+                        <p>
+                            {{ this.slides[this.actualElement].text }}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="thumbs">
+                    <div @click="previousElement()" class="prev"></div>
+                    <div @click="nextElement()" class="next"></div>
+                    <div v-on:click="setActualElement(index)" v-for="(thumb,index) in slides" class="thumb" :class="index === actualElement ? 'active' : ''">
+                        <img :src="thumb.image" alt="thumb.title"/>
+                    </div>
+    
+                </div>
+
+            </div>
+        </div>
+		<div class="buttons">
+			<button class="stop">stop</button>
+			<button class="start">start</button>
+		</div>	
+    </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

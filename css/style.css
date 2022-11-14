@@ -1,115 +1,113 @@
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-
-body {
-	height: 100vh;
-	background-size: cover;
-}
-
-.container-blur {
-	height: 100%;
-	backdrop-filter: blur(20px);
-}
-
-.contents {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 2rem;
-	height: 100%;
-}
-
-.slider {
-	height: 80%;
-	width: 60%;
-	max-width: 600px;
-	max-height: 500px;
+body{
+	backdrop-filter:blur(60%);
 	background-color: salmon;
-	border: 5px solid white;
+}
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.slider .slider-viewer {
+.item {
+    float: left;
+    width: 700px;
+    height: 300px;
+    position: relative;
+}
+
+.item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.item .text {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    text-align: right;
+    color: white;
+}
+
+.thumbs {
+    float: left;
+    height: 300px;
+    background: #000;
+    position: relative;
+}
+
+.thumb {
+    height: calc((300px) / 5);
+    opacity: 0.5;
+}
+
+.thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumb.active {
+    border: 2px solid #ccc;
+    opacity: 1;
+}
+
+.prev, .next {
+    width: 20px;
+    height: 20px;
+    margin: 10px 0;
+    border-radius: 50%;
+    background: #ccc;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    cursor: pointer;
+    z-index: 999;
+}
+
+.next {
+    bottom: 0;
+}
+
+/*
+EXTRA: in questo esempio gli accordion vengono creati
+usando 2 bordi di un quadratino ruotato di 45 gradi
+In una versione base si possono usare delle icone
+oppure i caratteri ∧ (&and;) e ∨ (&or;)
+ */
+.prev::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    display: block;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%) rotate(-45deg);
+}
+
+.next::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    display: block;
+    position: absolute;
+    bottom: 35%;
+    left: 50%;
+    transform: translate(-50%) rotate(135deg);
+}
+.buttons{
 	position: relative;
-	height: 80%;
-}
-
-.slider .controls {
-	position: absolute;
-	inset: 0;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	height: 100%;
-	z-index: 10;
-}
-
-.btn-left, .btn-right {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: .5rem;
-	width: 2rem;
-	height: 2rem;
-	border-radius: 100%;
-	background-color: white;
-}
-
-.btn-left:hover, .btn-right:hover {
-	background-color: lightblue;
-	cursor: pointer;
-}
-
-.hidden {
-	visibility: hidden;
-}
-
-.slider .slide {
-	position: absolute;
-	inset: 0;
-	display: none;
-	width: 100%;
-	height: 100%;
-	color: white;
-}
-
-.slider .slide img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	object-position: center;
-}
-
-.slider .slide .text {
-	position: absolute;
-	inset: 0;
-	padding: 1.5rem;
-	text-align: right;
-}
-
-.slider .slide.active {
-	display: block;
-}
-
-.slider .thumbs {
-	position: relative;
-	display: flex;
-	height: 20%;
-}
-
-.slider .thumb-img {
-	flex: 1 0 0;
-	min-width: 0;
-	height: 100%;
-	object-fit: cover;
-	object-position: center;
-	filter: brightness(.4);
-}
-
-.slider .thumb-img.active {
-	border: 5px solid white;
-	filter: brightness(1);
+    bottom: 10rem;
+    left: 46%;
 }
